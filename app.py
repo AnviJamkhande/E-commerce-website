@@ -1,33 +1,68 @@
+from flask import Flask, render_template, request
 import mysql.connector
-
-# Establish a connection to your MySQL database
-conn = mysql.connector.connect(
-    host='localhost',  # Replace 'your_host' with the actual hostname
-    user='root',  # Replace 'your_username' with the actual username
-    password='12345678',  # Replace 'your_password' with the actual password
-    database='ecommerceprojmine'
-)
-
-# Create a cursor object to execute SQL queries
-cursor = conn.cursor()
-
-# Example query to fetch data from the Artisans table
-cursor.execute("SELECT * FROM Artisans")
-artisans_data = cursor.fetchall()
-
-# Close cursor and connection when done
-cursor.close()
-conn.close()
-
-
-from flask import Flask, render_template
 
 app = Flask(__name__)
 
-@app.route('/')
+# Establishing a connection with MySQL
+def connect_to_db():
+    conn = mysql.connector.connect(
+        host='localhost',
+        user='root',
+        password='12345678',
+        database='ecommerceprojmine'
+    )
+    return conn
+
+# Error handling for database operations
+def execute_query(query, data=None):
+    conn = connect_to_db()
+    cursor = conn.cursor()
+
+    try:
+        if data:
+            cursor.execute(query, data)
+        else:
+            cursor.execute(query)
+        conn.commit()
+        return True
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
+        conn.rollback()
+        return False
+    finally:
+        cursor.close()
+        conn.close()
+
+@app.route('/', methods=['GET'])
 def index():
-    # Use artisans_data or other fetched data to render your Flash frontend
-    return render_template('index.html', artisans=artisans_data)
+    # Fetch artisan names from the Artisans table
+    conn = connect_to_db()
+    cursor = conn.cursor()
+    query = "SELECT Name FROM Artisans"
+    cursor.execute(query)
+    artisan_names = [row[0] for row in cursor.fetchall()]
+    cursor.close()
+    conn.close()
+
+    return render_template('add_display_artisan.html', artisan_names=artisan_names)
+
+@app.route('/add_artisan', methods=['POST'])
+def add_artisan():
+    if request.method == 'POST':
+        name = request.form['name']
+        age = int(request.form['age']) if request.form['age'].isdigit() else None
+        product = request.form['product']
+
+        # Inserting new artisans into the Artisans table in MySQL
+        insert_query = "INSERT INTO Artisans (Name, Age, Product) VALUES (%s, %s, %s)"
+        data = (name, age, product)
+
+        if execute_query(insert_query, data):
+            return 'Artisan added successfully!'
+        else:
+            return 'Failed to add artisan'
+
+    return 'Invalid request'
 
 if __name__ == '__main__':
     app.run(debug=True)
