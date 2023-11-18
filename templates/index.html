@@ -1,44 +1,22 @@
-<!DOCTYPE html>
+<!-- Store this code in 'index.html' file inside the 'templates' folder-->
+
 <html>
-<head>
-    <title>Artisans Data</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 80%;
-            margin: 20px auto;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-<body>
-    <h1>Artisans Data</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Age</th>
-                <th>Product</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for artisan in artisans %}
-                <tr>
-                    <td>{{ artisan[0] }}</td>
-                    <td>{{ artisan[1] }}</td>
-                    <td>{{ artisan[2] }}</td>
-                    <td>{{ artisan[3] }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title> Index </title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">					 
+	</head>
+	<body></br></br></br></br></br>
+		<div align="center">
+		<div align="center" class="border">
+			<div class="header">
+				<h1 class="word">Index</h1>
+			</div></br></br></br>
+				<h1 class="bottom">
+					Hi {{session.username}}!!</br></br> Welcome to the index page...				 
+				</h1></br></br></br>
+				<a href="{{ url_for('logout') }}" class="btn">Logout</a>
+		</div>
+		</div>
+	</body>
 </html>

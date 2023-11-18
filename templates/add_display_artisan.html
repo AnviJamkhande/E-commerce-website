@@ -21,10 +21,15 @@
     </form>
 
     <!-- Display list of artisan names -->
-    <h2>List of Artisan Names</h2>
+    <h2>List of Artisan Names and their IDs</h2>
     <ul>
-        {% for name in artisan_names %}
-            <li>{{ name }}</li>
+        {% for id in artisan_ids %}
+            <li>
+                ID: {{ id }},
+                Name: {{ artisan_names[id - 1] }},
+                Age: {{ artisan_ages[id - 1] }},
+                Product: {{ artisan_products[id - 1] }}
+            </li>
         {% endfor %}
     </ul>
 </body>
