@@ -165,9 +165,9 @@ def userEnter(user_id):
             my_list.append(temp_dict)
     if request.method=='POST':
         cur = my_sql.connection.cursor()
-        OID = 3
+        # OID = 3
         f_amt = total_val
-        cur.execute("INSERT INTO cart(Cart_ID,Total_Value,Total_Count,Offer_ID,Final_Amount) VALUES(%s, %s, %s, %s, %s)",(cart_id,total_val,total_count,OID,f_amt))
+        cur.execute("INSERT INTO cart(Cart_ID,Total_Value,Total_Count,Final_Amount) VALUES(%s, %s, %s, %s)",(cart_id,total_val,total_count,f_amt))
         my_sql.connection.commit()
         cur.close()
         url_direct = '/order'+'/'+str(user_id)
