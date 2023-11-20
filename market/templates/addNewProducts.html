@@ -4,6 +4,12 @@
 {% endblock %}
 
 {% block content %}
+<style>
+  .larger-input {
+  height: 100px; /* Adjust the height as needed */
+}
+
+</style>
 <div class ="d-flex justify-content-center align-items-center min-vh-100" >
 <div style="max-width: 30%;">
 <form method ="POST" action="">
@@ -16,18 +22,18 @@
       name = "Name">
     </div>
     <div class="form-group" >
-      <input class="form-control" id="exampleInputPassword1" placeholder="Brand" name="Brand">
+      <input class="form-control" id="exampleInputPassword1" placeholder="Artisan Name" name="Brand">
     </div>
     <div class="form-group" >
         <input class="form-control" id="exampleInputPassword1" placeholder="Price" name="Price">
       </div>
     <div class="form-group" >
-        <input class="form-control" id="exampleInputPassword1" placeholder="Measurement" name="Measurement">
+        <input class="form-control larger-input" id="exampleInputPassword1" placeholder="Description" name="Description">
       </div>
 
-      <div class="form-group" >
-        <input class="form-control" id="exampleInputPassword1" placeholder="Measurement Units" name="Unit">
-      </div>
+      <!-- <div class="form-group" > -->
+        <!-- <input class="form-control" id="exampleInputPassword1" placeholder="Measurement Units" name="Unit"> -->
+      <!-- </div> -->
 
       <div class="form-group" >
         <input class="form-control" id="exampleInputPassword1" placeholder="Category ID" name="Category_ID">
