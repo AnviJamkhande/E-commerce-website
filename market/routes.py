@@ -82,8 +82,8 @@ def adminAdd_Seller(admin_id):
         Password = Seller_Details['Password']
         Place_Of_Operation = Seller_Details['Place_Of_Operation']
         cur = my_sql.connection.cursor()
-        cur.execute("INSERT INTO seller(First_Name,Last_Name,Email,Phone_Number,Password,Place_Of_Operation,Admin_ID) VALUES(%s, %s, %s, %s, %s,%s,%s)",(First_Name,Last_Name,Email,Phone_Number,Password,Place_Of_Operation,admin_id))
-        flash('You have successfully added a seller !')
+        cur.execute("INSERT INTO artisan(First_Name,Last_Name,Email,Phone_Number,Password,Place_Of_Operation,Admin_ID) VALUES(%s, %s, %s, %s, %s,%s,%s)",(First_Name,Last_Name,Email,Phone_Number,Password,Place_Of_Operation,admin_id))
+        flash('You have successfully added an artisan !')
         my_sql.connection.commit()
         cur.close()
     return render_template('addSeller.html',admin_id=admin_id)
@@ -124,7 +124,7 @@ def sell(seller_id):
             if c_tup==() or int(Quantity)<0:
                 flash('Invalid Product details or Quantity')
             else:
-                cur.execute("INSERT INTO sells(Seller_ID,Product_ID,No_of_Product_Sold) VALUES(%s, %s, %s)",(seller_id,tup[0],Quantity))
+                cur.execute("INSERT INTO retails(Artisan_ID,Product_ID,No_of_Product_Sold) VALUES(%s, %s, %s)",(seller_id,tup[0],Quantity))
                 my_sql.connection.commit()
                 cur.close()
                 flash('Product added successfully ')
@@ -332,7 +332,7 @@ def sellerRegister():
         if rand_admin >0:
             rand_ad = cur.fetchall()
             F_key = random.choice(rand_ad)
-            cur.execute("INSERT INTO seller(First_Name,Last_Name,Email,Phone_Number,Password,Place_Of_Operation,Admin_ID) VALUES(%s, %s, %s,%s,%s,%s, %s)",(First_Name,Last_Name,Email,Mobile_No,Password,POO, F_key))
+            cur.execute("INSERT INTO artisan(First_Name,Last_Name,Email,Phone_Number,Password,Place_Of_Operation,Admin_ID) VALUES(%s, %s, %s,%s,%s,%s, %s)",(First_Name,Last_Name,Email,Mobile_No,Password,POO, F_key))
             flash('You have registered successfully !')
         my_sql.connection.commit()
         cur.close()
@@ -391,7 +391,7 @@ def SellerLogin():
         Email = userDetail['Email']
         Password = userDetail['Password']
         cur = my_sql.connection.cursor()
-        cust_list = cur.execute("SELECT * FROM seller")
+        cust_list = cur.execute("SELECT * FROM artisan")
         if cust_list>0:
             cust_all = cur.fetchall()
             c_tup = ()
