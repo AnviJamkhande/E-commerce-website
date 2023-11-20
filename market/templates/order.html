@@ -9,9 +9,9 @@
           <div class="card" style="width: 15rem;margin: 5px;">
             <img class="card-img-top" src="https://picsum.photos/100" alt="Card image cap"/>
             <div class="card-body">
-              <h5 class="card-title text-primary">Name: {{dict.Name}}</h5>
-              <h5 class="card-title text-success">Brand: {{dict.Brand}}</h5>
-              <h5 class="card-title text-danger">Price: RS {{dict.Price}}</h5>
+              <h5 class="card-title text-primary">Product: {{dict.Name}}</h5>
+              <h5 class="card-title text-success">Artisan: {{dict.Brand}}</h5>
+              <h5 class="card-title text-danger">Price: Rs {{dict.Price}}</h5>
               <!-- <a href="#" class="btn btn-primary">Add to Cart</a> -->
             </div>
           </div>
@@ -24,7 +24,7 @@
       {% block navBar %}
       <div style="margin: 5px;">
         <form class="form-inline my-2 my-lg-0" method="POST">
-            <input class="form-control mr-sm-2" type="search" placeholder="Coupon_Code" name = "Promo_Code">
+            <!-- <input class="form-control mr-sm-2" type="search" placeholder="Coupon_Code" name = "Promo_Code"> -->
             <button class="btn btn-danger my-2 my-sm-0 text-light " type="submit">Place Order</button>
         </form>
       </div>
