@@ -40,36 +40,6 @@ def adminViewOrder(admin_id):
         return redirect('/admin/'+str(admin_id))
     return render_template('viewOrder.html',list=my_list)
 
-# @app.route('/adminOffer/<admin_id>',methods=['GET', 'POST'])
-# def adminAddOffer(admin_id):
-#     if request.method=='POST':
-#         offerDetails = request.form
-#         PC = offerDetails['Promo_Code']
-#         PD = offerDetails['Percentage_Discount']
-#         min_orderval = offerDetails['Min_OrderValue']
-#         max_discount = offerDetails['Max_Discount']
-#         cur = my_sql.connection.cursor()
-#         cur.execute("INSERT INTO offer(Promo_Code,Percentage_Discount,Min_OrderValue,Max_Discount,admin_id) VALUES(%s, %s, %s, %s,%s)",(PC,PD,min_orderval,max_discount,admin_id))
-#         flash('You have successfully added a Offer !')
-#         my_sql.connection.commit()
-#         cur.close()
-#     return render_template('addOffer.html',admin_id=admin_id)
-
-# @app.route('/adminDelivery_boy/<admin_id>',methods=['GET', 'POST'])
-# def adminAdd_Delivery_Boy(admin_id):
-#     if request.method=='POST':
-#         delivery_boy_Details = request.form
-#         First_Name = delivery_boy_Details['First_Name']
-#         Last_Name = delivery_boy_Details['Last_Name']
-#         Mobile_No = delivery_boy_Details['Mobile_No']
-#         Email = delivery_boy_Details['Email']
-#         Password = delivery_boy_Details['Password']
-#         cur = my_sql.connection.cursor()
-#         cur.execute("INSERT INTO delivery_boy(First_Name,Last_Name,Mobile_No,Email,Password,Average_Rating,Admin_ID) VALUES(%s, %s, %s, %s, %s,%s,%s)",(First_Name,Last_Name,Mobile_No,Email,Password,None,admin_id))
-#         flash('You have successfully added a delivery boy !')
-#         my_sql.connection.commit()
-#         cur.close()
-#     return render_template('addDelivery.html',admin_id=admin_id)
 
 @app.route('/adminSeller/<admin_id>',methods=['GET', 'POST'])
 def adminAdd_Seller(admin_id):
@@ -94,12 +64,12 @@ def adminAdd_Product(admin_id):
         Product_Details = request.form
         Name = Product_Details['Name']
         Price = Product_Details['Price']
-        Brand= Product_Details['Brand']
-        Measurement = Product_Details['Measurement']
+        Artisan_name= Product_Details['Artisan_name']
+        Description = Product_Details['Description']
         Category_ID = Product_Details['Category_ID']
-        Unit = Product_Details['Unit']
+        # Unit = Product_Details['Unit']
         cur = my_sql.connection.cursor()
-        cur.execute("INSERT INTO product(Name,Price,Brand,Measurement,Admin_ID,Category_ID,Unit) VALUES(%s, %s, %s, %s, %s,%s,%s)",(Name,Price,Brand,Measurement,admin_id,Category_ID,Unit))
+        cur.execute("INSERT INTO product(Name,Price,Artisan_name,Admin_ID,Category_ID,Description) VALUES(%s, %s, %s, %s, %s,%s)",(Name,Price,Artisan_name,admin_id,Category_ID,Description))
         flash('You have successfully added a Product !')
         my_sql.connection.commit()
         cur.close()
