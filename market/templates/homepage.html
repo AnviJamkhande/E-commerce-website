@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block title %}
   Welcome to Online Store
 {% endblock %}
@@ -20,6 +21,30 @@
   .content {
     text-align: center;
     color: white;
+  }
+
+  @font-face {
+    font-family: 'YourCustomFont';
+    src: url('/static/quiny.ttf') format('truetype'); /* Adjust the path accordingly */
+    /* Additional font properties, if needed */
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Font2';
+    src: url('/static/font2.ttf') format('truetype'); /* Adjust the path accordingly */
+    /* Additional font properties, if needed */
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  .custom-font {
+    font-family: 'YourCustomFont', sans-serif; /* Use the custom font for this class */
+  }
+
+  .font2 {
+    font-family: 'Font2', sans-serif; /* Use the Font2 font for this class */
   }
 
   .button {
@@ -50,15 +75,25 @@
   .button:active {
     opacity: 0.7;
   }
+
+  /* Adjust the font-size property below */
+  .custom-font {
+    font-size: 100px; /* Adjust the size as needed */
+  }
+
+  .font2 {
+    font-size: 20px; /* Adjust the size as needed */
+  }
+
 </style>
 
 <div class="content">
   <form method="POST" action="">
-    <p style="font-size: 22px;">PLEASE LOGIN ACCORDING TO YOUR CHOICE</p>
-
-    <a class="button" href="{{url_for('loginRegisterUser')}}">Company</a>
-    <a class="button" href="{{url_for('loginRegisterAdmin')}}">Admin</a>
-    <a class="button" href="{{url_for('loginRegisterSeller')}}">Artisan</a>
+    <p class="custom-font">HuesOfIndia</p>
+    <p style="font-size: 22px;" class="font2">PLEASE LOGIN ACCORDING TO YOUR CHOICE</p>
+    <a class="button font2" href="{{url_for('loginRegisterUser')}}">Company</a>
+    <a class="button font2" href="{{url_for('loginRegisterAdmin')}}">Admin</a>
+    <a class="button font2" href="{{url_for('loginRegisterSeller')}}">Artisan</a>
   </form>
 </div>
 {% endblock %}
