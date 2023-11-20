@@ -42,6 +42,22 @@
   border-radius: 75px;
   border: none;
 }
+
+@font-face {
+    font-family: 'Font2';
+    src: url('/static/font2.ttf') format('truetype'); /* Adjust the path accordingly */
+    /* Additional font properties, if needed */
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  .font2 {
+    font-family: 'Font2', sans-serif; /* Use the Font2 font for this class */
+  }
+
+  .font2 {
+    font-size: 20px; /* Adjust the size as needed */
+  }
 </style>
 <div style="
   display: flex;
@@ -66,7 +82,7 @@ margin-top: 25px;
     align-items: center;
     text-align: center;
     flex: 1; ">
-     <p style="font-size: 26px">COMPANY LOGIN / REGISTER MENU</p>
+     <p style="font-size: 26px" class = "font2">COMPANY LOGIN / REGISTER MENU</p>
     </div>
   
 </div>
@@ -80,7 +96,7 @@ margin-top: 25px;
     <div style="flex: 1; margin-left: 175px; margin-right: 100px; vertical-align: top;  align-items: center;">
     </div>
     <div style= "flex: 1; vertical-align: top;  margin-right: 100px; vertical-align: top;  align-items: center; margin-top: 6px;">
-      <a class="button" href="{{url_for('UserLogin')}}">Login</a>
+      <a class="button font2" href="{{url_for('UserLogin')}}">Login</a>
     </div>
     <div style="flex: 2">
 
@@ -97,7 +113,7 @@ margin-top: 25px;
       
     <div style="flex: 1; margin-left: 170px; margin-right: 110px; vertical-align: top;  align-items: center;">
     </div>
-    <div style= "flex: 1; vertical-align: top;  margin-right: 100px; vertical-align: top;  align-items: center; margin-top: 6px; padding-top: 35px;">
+    <div style= "flex: 1; vertical-align: top;  margin-right: 100px; vertical-align: top;  align-items: center; margin-top: 6px; ">
       <a class="button" href="{{url_for('customerRegister')}}">Register</a>
     </div>
     <div style="flex: 2">
