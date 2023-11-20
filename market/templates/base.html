@@ -61,9 +61,29 @@
 
   <style>
     body {
-    background-color: #212121;
-    color: white
+        background-color: #212121;
+        color: white;
+        margin: 0; /* Add this line to remove default margin */
+        padding: 0;
+        background-image: url('{{url_for('static', filename='store.jpg')}}');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
- </style>
+
+    .navbar {
+        position: fixed; /* Fix navbar position */
+        top: 0;
+        width: 100%; /* Full width */
+        z-index: 1000; /* Set z-index to place it above other elements */
+    }
+
+    .container {
+        margin-top: 70px; /* Adjust top margin to prevent content overlap */
+    }
+</style>
 
 </html>

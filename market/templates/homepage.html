@@ -4,15 +4,25 @@
 {% endblock %}
 
 {% block content %}
-<form method ="POST" action="">
 <style>
-.search ::placeholder
-{
-  font-family: Roboto,Arial;
-  font-size: 16px;
-}
-.button
-{
+  body {
+    margin: 0;
+    padding: 0;
+    background-image: url('{{url_for('static', filename='store.jpg')}}');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .content {
+    text-align: center;
+    color: white;
+  }
+
+  .button {
     background-color: rgb(239, 226, 226);
     color: rgb(2, 8, 14);
     border-style: solid;
@@ -27,104 +37,28 @@
     cursor: pointer;
     transition: background-color 0.15s, color 0.15s;
     border-radius: 30px;
-}
-.button:hover{
-  background-color: rgb(11, 99, 206);
-  color: white;
-}
-.button:active{
-  opacity: 0.7;
-}
-.image_cart
-{
-  height: 250px;
-  width: 450px;
-  border-radius: 75px;
-  border: none;
-}
+    text-decoration: none;
+    display: inline-block;
+    margin: 10px;
+  }
+
+  .button:hover {
+    background-color: rgb(11, 99, 206);
+    color: white;
+  }
+
+  .button:active {
+    opacity: 0.7;
+  }
 </style>
-<div style="
-  display: flex;
-  flex-direction: row;
-  margin-top: 25px;
-  justify-content: center;
-  ">
-      
-    <div style="flex: 1">
-    </div>
-    <div style= "flex: 1;  margin-right: 40px">
-      <img src="{{url_for('static', filename='store.jpg')}}" class="image_cart"/>
-    </div>
-    <div style="flex: 1">
-    </div>
-  
-</div>
-<div>
-<div style="
-margin-top: 25px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 10px;
-  ">
-      
-    <div style= "flex: 1; vertical-align: top;  margin-right: 100px; vertical-align: top;  align-items: center; margin-left: 325px;">
-     <p style="font-size: 22px">PLEASE LOGIN ACCORDING TO YOUR CHOICE</p>
-    </div>
-  
-</div>
-<div style="
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 40px;
-  ">
-      
-    <div style="flex: 1; margin-left: 175px; margin-right: 100px; vertical-align: top;  align-items: center;">
-    </div>
-    <div style= "flex: 1; vertical-align: top;  margin-right: 100px; vertical-align: top;  align-items: center; margin-top: 6px;">
-      <a class="button" href="{{url_for('loginRegisterUser')}}">Company</a>
-    </div>
-    <div style="flex: 2">
 
-    </div>
-  
-</div>
-<div style="
-  display: flex;
-  flex-direction: row;
-  margin-top: 25px;
-  justify-content: center;
-  margin-bottom: 45px;
-  ">
-      
-    <div style="flex: 1; margin-left: 170px; margin-right: 110px; vertical-align: top;  align-items: center;">
-    </div>
-    <div style= "flex: 1; vertical-align: top;  margin-right: 100px; vertical-align: top;  align-items: center; margin-top: 6px; ">
-      <a class="button" href="{{url_for('loginRegisterAdmin')}}">Admin</a>
-    </div>
-    <div style="flex: 2">
+<div class="content">
+  <form method="POST" action="">
+    <p style="font-size: 22px;">PLEASE LOGIN ACCORDING TO YOUR CHOICE</p>
 
-    </div>
-  
-</div>
-<div style="
-  display: flex;
-  flex-direction: row;
-  margin-top: 10px;
-  justify-content: center;
-  margin-bottom: 50px;
-  ">
-      
-    <div style="flex: 1; margin-left: 170px; margin-right: 95px; vertical-align: top;  align-items: center;">
-    </div>
-    <div style= "flex: 1; vertical-align: top;  margin-right: 55px; vertical-align: top;  align-items: center; margin-top: 0px; ">
-      <a class="button" href="{{url_for('loginRegisterSeller')}}">Artisan</a>
-    </div>
-    <div style="flex: 2">
-    </form>
-    </div>
-  
-</div>
+    <a class="button" href="{{url_for('loginRegisterUser')}}">Company</a>
+    <a class="button" href="{{url_for('loginRegisterAdmin')}}">Admin</a>
+    <a class="button" href="{{url_for('loginRegisterSeller')}}">Artisan</a>
+  </form>
 </div>
 {% endblock %}
