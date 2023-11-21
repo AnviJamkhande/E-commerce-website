@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Seller Panel
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row" style="margin-left: 300px; margin-right: 300px;">
+      <table class="table">
+        <thead>
+          <tr style="color: white;">
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Number of Categories Sold</th>
+            <th>Total Products Sold</th>
+            <th>Total Sales Done</th>
+            <th>Average Sale Per Order</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for dict in list %}
+            <tr style="color: white;">
+              <td>{{ dict.FirstName }}</td>
+              <td>{{ dict.LastName }}</td>
+              <td>{{ dict.No_Of_cat_sold }}</td>
+              <td>{{ dict.Tot_Prods }}</td>
+              <td>{{ dict.Tot_Sales }}</td>
+              <td>{{ dict.Avg_per_sale }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
+
+

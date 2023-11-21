@@ -17,6 +17,33 @@ customer_cart_list=[]
 def adminRedirect(admin_id):
     return render_template('adminOption.html',admin_id=admin_id)
 
+@app.route('/adminSales/<admin_id>', methods=['GET', 'POST'])
+def salesstats(admin_id):
+    my_list = []
+    cur = my_sql.connection.cursor()
+    sales_list = cur.execute("SELECT retails.Artisan_ID, artisan.First_Name, Artisan.Last_Name, count(product.Category_ID) AS No_Of_Categories_Sold, SUM(retails.No_of_Product_Sold) as Total_Products_Sold, SUM(Product.price * retails.No_of_Product_Sold) AS Total_Sales_Done, AVG(Product.price * retails.No_of_Product_Sold) AS Average_Sale_Per_Order FROM retails JOIN artisan JOIN product WHERE retails.Artisan_ID=artisan.Artisan_ID AND product.Product_ID=retails.Product_ID GROUP BY Artisan_ID ORDER BY Artisan_ID")
+    if sales_list > 0:
+        sales_all = cur.fetchall()
+        for sale in sales_all:
+            temp_dict = {}
+            for index in range(7): #add range
+                if index == 1:
+                    temp_dict['FirstName'] = sale[1]
+                elif index == 2:
+                    temp_dict['LastName'] = sale[2]
+                elif index == 3:
+                    temp_dict['No_Of_cat_sold'] = sale[3]
+                elif index == 4:
+                    temp_dict['Tot_Prods'] = sale[4]
+                elif index == 5:
+                    temp_dict['Tot_Sales'] = sale[5]
+                elif index == 6:
+                    temp_dict['Avg_per_sale'] = sale[6]
+            my_list.append(temp_dict)
+    if request.method=='POST':
+        return redirect('/admin/'+str(admin_id))
+    return render_template('sales.html',list=my_list)
+
 @app.route('/adminOrder/<admin_id>',methods=['GET', 'POST'])
 def adminViewOrder(admin_id):
     my_list =[]
@@ -67,7 +94,6 @@ def adminAdd_Product(admin_id):
         Artisan_name= Product_Details['Artisan_name']
         Description = Product_Details['Description']
         Category_ID = Product_Details['Category_ID']
-        # Unit = Product_Details['Unit']
         cur = my_sql.connection.cursor()
         cur.execute("INSERT INTO product(Name,Price,Artisan_name,Admin_ID,Category_ID,Description) VALUES(%s, %s, %s, %s, %s,%s)",(Name,Price,Artisan_name,admin_id,Category_ID,Description))
         flash('You have successfully added a Product !')
@@ -101,7 +127,6 @@ def sell(seller_id):
     return render_template('addProduct.html')
 
 
-
 def reinitialize():
     global cart_id
     global total_count
@@ -131,11 +156,10 @@ def userEnter(user_id):
                 elif(index==2):
                     temp_dict['Price']=prod[2]
                 else:
-                    temp_dict['Brand']=prod[3]
+                    temp_dict['Brand']=prod[6]
             my_list.append(temp_dict)
     if request.method=='POST':
         cur = my_sql.connection.cursor()
-        # OID = 3
         f_amt = total_val
         cur.execute("INSERT INTO cart(Cart_ID,Total_Value,Total_Count,Final_Amount) VALUES(%s, %s, %s, %s)",(cart_id,total_val,total_count,f_amt))
         my_sql.connection.commit()
@@ -160,62 +184,6 @@ def userEnter(user_id):
             tempError = "Error: KeyError"
     return render_template('home.html',list=my_list)
 
-# @app.route('/order/<user_id>',methods=['GET','POST'])
-# def placeOrder(user_id):
-#     global customer_cart_list
-#     global cart_id
-#     global total_val 
-#     if request.method=='POST':
-#         # OfferDetails = request.form
-#     #     # P_code = OfferDetails['Promo_Code']
-#         cur = my_sql.connection.cursor()
-#     #     if(P_code=='Coupon_Code'):
-#             # cur.execute("UPDATE cart SET Offer_ID = %s WHERE Cart_ID = %s",(None,cart_id))
-#     #         my_sql.connection.commit()
-#     #         cur.close()
-#     #     else:
-#     #         offer_list = cur.execute("SELECT * FROM offer")
-#     #         if offer_list>0:
-#     #             offer_all = cur.fetchall()
-#     #             deduct = 0
-#     #             my_tup=()
-#     #         for tup in offer_all:
-#     #             if(tup[1]==P_code):
-#     #                 my_tup=tup
-#     #                 if(int(total_val)>int(tup[3])):
-#     #                     dval = (int(total_val)*float(tup[2]))/100
-#     #                     if(float(dval)>int(tup[4])):
-#     #                         deduct=int(tup[4])
-#     #                     else:
-#     #                         deduct=dval
-#     #                 break
-#     #         if(deduct==0):
-#     #             cur.execute("UPDATE cart SET Offer_ID = %s WHERE Cart_ID = %s",(None,cart_id))
-#     #             my_sql.connection.commit()
-#     #             cur.close()
-#     #         else:
-#     #             cur.execute("UPDATE cart SET Offer_ID = %s WHERE Cart_ID = %s",(my_tup[0],cart_id))
-#     #             total_val=total_val-deduct
-#     #             cur.execute("UPDATE cart SET Final_Amount = %s WHERE Cart_ID = %s",(total_val,cart_id))
-#     #             my_sql.connection.commit()
-#     #             cur.close()
-    
-#         for item in customer_cart_list:
-#             product_name = item['Name']
-#             cur = my_sql.connection.cursor()
-#             prod_list = cur.execute("SELECT * FROM product")
-#             if prod_list>0:
-#                 prod_all = cur.fetchall()
-#                 id = -1
-#             for tup in prod_all:
-#                 if(tup[1]==product_name):
-#                     id = tup[0]
-#                     break
-#             cur.execute("INSERT INTO associatedWith(Company_ID,Cart_ID,Product_ID) VALUES(%s, %s, %s)",(user_id,cart_id,id))
-#             my_sql.connection.commit()
-#             cur.close()
-#         return redirect('/placeOrder'+'/'+str(user_id))
-#     return render_template('order.html',list=customer_cart_list)
 
 @app.route('/order/<user_id>',methods=['GET','POST'])
 def placeOrder(user_id):
@@ -237,9 +205,6 @@ def placeOrder(user_id):
             my_sql.connection.commit()
             cur.close()
         return redirect('/placeOrder'+'/'+str(user_id))
-    # else:
-    #     url_direct = '/home'+'/'+str(user_id)
-    #     redirect(url_direct)
     return render_template('order.html',list=customer_cart_list,user_id=user_id)
 
 
@@ -274,10 +239,6 @@ def order_placing(user_id):
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
         cur = my_sql.connection.cursor()
-        # rand_delivery_boy = cur.execute("SELECT Delivery_Boy_ID FROM delivery_boy")
-        # if rand_delivery_boy >0:
-        #     rand_boy = cur.fetchall()
-        #     boy_key = random.choice(rand_boy)
         cur.execute("INSERT INTO orders(Mode,Amount,City,State,Order_Time,House_Flat_No,Pincode,Cart_ID,Date) VALUES(%s, %s, %s, %s, %s,%s,%s,%s,%s)",(Mode,total_val,City,State,current_time,HNO,Pincode,cart_id,curr_date))
         flash('Your Order has been placed Successfully !')
         my_sql.connection.commit()
