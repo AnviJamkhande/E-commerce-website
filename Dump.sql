@@ -12,9 +12,7 @@ CREATE TABLE `company` (
   KEY `companypassword` (`Password`)
 );
 LOCK TABLES `company` WRITE;
-/*!40000 ALTER TABLE `company` DISABLE KEYS */;
 INSERT INTO `company` VALUES (201,'Anvi','Jamkhande','anvijamkhande@gmail.com','7020862131','12345678'),(202,'Krishnam','Omar','krishnam20309@iiitd.ac.in','9205458676','krishnam!309'),(203,'Sanjay','Singh','sanjays@gmail.com','9876543210','ssingh#07'),(204,'Daksh','Sethi','sethidaksh02@gmail.com','9079676872','02oct@daksh'),(205,'Nakshatra','Yadav','yadavnk@gmail.com','6367918004','nick@05june'),(206,'Dhroovi','Poswal','dhrooviposwal@gmail.com','7021145249','apr29dh@05'),(207,'Madhvendra','Shaktawat','madhavsingh@gmail.com','9116849560','mahavjln@2001'),(208,'Suryakant','Rawat','srawat1961@gmail.com','9784647931','gaurav@2000'),(209,'Devesh','Mishra','deveshmanit@gmail.com','8004473290','devesh@ayodhya'),(210,'Jaya','Rawat','jaya1996@gmail.com','9785344167','rawatj@20'),(211,'Harsh','Raj','harshgaya@rediffmail.com','9876543211','harsh@bitm2001'),(212,'Himanshi','Fagna','fagnahimanshi@yahoomail.com','9930844798','himanshi@2005'),(213,'Harshit','R','raviharshit@gmail.com','9448722521','araviharshit@02'),(214,'Palak','Jain','jainpalakksg@gmail.com','9462270427','palakllb@muj'),(215,'Bajrang','Sharma','bsharmamayoor@gmail.com','9829110069','sharma@bajrangajmer'),(216,'Prachi','Chouhan','prachi2001@gmail.com','9928905860','prachi@geetanjali'),(217,'Krishandev',NULL,'kdevajmer@gmail.com','9664030892','devajmer@raj'),(218,'Ghisalal','Rawat','rawat1935@gmail.com','9782522343','gl@rawatdausa'),(219,'Madhav','Vyas','madhav20310@iiitd.ac.in','9625793053','vyasiiitd@madhav'),(220,'Ruchir','Agarwal','ruchir2607iitb@gmail.com','9434376643','agarwaliitb@2001'),(221,'Prateek','Apurva','prateekiiitn@gmail.com','8306573385','papurvaajmer@cse'),(222,'Shubham','Gautam','shubhamudce@gmail.com','9950746862','gautam@2002'),(223,'Prashant','Ramnani','prashant@iitkgp.ac.in','8443454531','ramnani@csekgp'),(224,'Mimansa','Bharadwaj','mimansamayoor@gmail.com','9214444174','art@bharadwaj'),(225,'Dharam','Pratap','dpratap@bitsp.ac.in','7343434342','dharam@1basketball'),(226,'Ojasva','Singh','osingh@gmail.com','7838067886','singh@iiitd1'),(227,'Kairvee','Rastogi','rastogikairvee@gmail.com','9732423442','rastogi@2002'),(228,'Yash','Rariya','yashcuraj@gmail.com','9660011878','rariyabjp@ajmer'),(229,'Shubham','Singh','bitmshubham@gmail.com','9105862131','shubham@kota2001'),(230,'Rajendra','Singh','rajendrakanha@gmail.com','9878945793','kanha@ajmer1');
-/*!40000 ALTER TABLE `company` ENABLE KEYS */;
 UNLOCK TABLES;
 -- ------------------------------------------------------------------------------------------------------
 -- DROP TABLE IF EXISTS `select`;
@@ -37,9 +35,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 LOCK TABLES `admin` WRITE;
-/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
 INSERT INTO `admin` VALUES (1,'Anvi','Jamkhande','12345678'),(2,'Manas','Jorvekar','manasj@294'),(3,'Pritish','Poswal','pposwal@321'),(4,'Aarya','Agarwal','vibhorag@349');
-/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 -- ------------------------------------------------------------------------------------------------------
 DROP TABLE IF EXISTS `cart`;
@@ -54,9 +50,7 @@ CREATE TABLE `cart` (
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 LOCK TABLES `cart` WRITE;
-/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
 INSERT INTO `cart` VALUES (1,230,3,130),(2,254,5,134),(3,954,10,954),(4,655,1,655);
-/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 -- ----------------------------------------------------------------------------------------------------------------------
 DROP TABLE IF EXISTS `orders`;
@@ -78,9 +72,7 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 LOCK TABLES `orders` WRITE;
-/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
 INSERT INTO `orders` VALUES (1,'COD',130,'Delhi','Delhi','10:00:00','304','110020',1,'20-03-2022'),(2,'UPI',134,'Delhi','Delhi','11:05:00','100','110001',2,'25-03-2022'),(3,'Card',954,'Noida','UP','09:05:00','200','201301',3,'28-03-2022'),(4,'Netbanking',655,'Gurgaon','Haryana','14:30:00','300','122011',4,'31-03-2022');
-/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 -- ----------------------------------------------------------------------------------------------
 DROP TABLE IF EXISTS `category`;
@@ -91,9 +83,7 @@ CREATE TABLE `category` (
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 LOCK TABLES `category` WRITE;
-/*!40000 ALTER TABLE `category` DISABLE KEYS */;
 INSERT INTO `category` VALUES (1,'Pots & Vases'),(2,'Warli paintings'),(3,'Diyas & Lanterns'),(4,'Knitted Items'),(5,'Crochet'),(6,'Clay Idols'),(7,'Scluptures'),(8,'Hand loom work'),(9,'Wool Scarfs'),(10,'Silk Sarees'),(11,'Bamboo Baskets'),(12,'Lanterns'),(13,'Accessories'),(14,'Jewllery'),(15,'3D Art');
-/*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 -- ----------------------------------------------------------------------------------------------
 DROP TABLE IF EXISTS `product`;
@@ -114,7 +104,6 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 LOCK TABLES `product` WRITE;
-/*!40000 ALTER TABLE `product` DISABLE KEYS */;
 INSERT INTO `product` VALUES (1, "Ceramic pots", 500, 1, 1, "12x5in, Flower Pot, Blue/Red colours", 'Anvi Jamkhande'),
 (2, "Hand-Painted Silk Saree", 2500, 1, 10, "Hand-painted, Pure Silk, Floral design", 'Ritika Sharma'),
 (3, "Wooden Elephant Statue", 1200, 1, 6, "Hand-carved, Teak Wood, Intricate design", 'Karadminan Singh'),
@@ -131,7 +120,6 @@ INSERT INTO `product` VALUES (1, "Ceramic pots", 500, 1, 1, "12x5in, Flower Pot,
 (14, "Warli Wall Clock", 800, 1, 12, "Hand-painted, Ethnic design, Wooden base", 'Neha Shah'),
 (15, "Copper Water Bottle", 1500, 1, 13, "Handmade, Ayurvedic benefits, Leak-proof", 'Rajesh Tiwari'),
 (16, "Kutch Embroidery Pillow", 1200, 1, 4, "Handcrafted, Colorful threadwork", 'Veena Patel');
-/*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
 -- ----------------------------------------------------------------------------------------------------
@@ -149,13 +137,11 @@ CREATE TABLE `associatedWith` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 LOCK TABLES `associatedwith` WRITE;
-/*!40000 ALTER TABLE `associatedwith` DISABLE KEYS */;
 INSERT INTO `associatedWith` (`Company_ID`, `Cart_ID`, `Product_ID`) VALUES 
     (201, 1, 1), (201, 1, 16), -- Associating Company 201, Cart 1 with Products 1 and 16
     (203, 2, 3), (203, 2, 6), (203, 2, 8), (203, 2, 10), (203, 2, 20), -- Associating Company 203, Cart 2 with Products 3, 6, 8, 10, and 20
     (205, 3, 27), (205, 3, 28), (205, 3, 29), -- Associating Company 205, Cart 3 with Products 27, 28, and 29
     (211, 6, 49), (211, 6, 55)	;
-/*!40000 ALTER TABLE `associatedwith` ENABLE KEYS */;
 UNLOCK TABLES;
 -- ----------------------------------------------------------------------------------------------------
 DROP TABLE IF EXISTS `admin_views`;
@@ -170,9 +156,7 @@ CREATE TABLE `admin_views` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 LOCK TABLES `admin_views` WRITE;
-/*!40000 ALTER TABLE `admin_views` DISABLE KEYS */;
 INSERT INTO `admin_views` VALUES (1,1,3),(1,2,3),(1,3,3),(2,4,1);
-/*!40000 ALTER TABLE `admin_views` ENABLE KEYS */;
 UNLOCK TABLES;
 -- --------------------------------------------------------------------------------------------------------
 
@@ -191,11 +175,8 @@ CREATE TABLE `artisan` (
   KEY `artisan_admin_Admin_ID_fk` (`Admin_ID`),
   CONSTRAINT `artisan_admin_Admin_ID_fk` FOREIGN KEY (`Admin_ID`) REFERENCES `admin` (`Admin_ID`) ON DELETE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 LOCK TABLES `artisan` WRITE;
-/*!40000 ALTER TABLE `artisan` DISABLE KEYS */;
 INSERT INTO `artisan` VALUES (11,'Shyam','Jadhav','sj@gmail.com','8765432109','saverbazar@123','New Delhi',1),(12,'Anvi ','Jamkhande','anvijamkhande@gmail.com','7020862131','12345678','New Delhi',1),(13,'Xpress ','Mart','xpressm@gmail.com','8901234567','xpress@123','Mumbai',1),(14,'OneStop','Grocery','onestopgrocery@gmail.com','9999999998','onestop@one','New Delhi',1);
-/*!40000 ALTER TABLE `artisanartisan` ENABLE KEYS */;
 UNLOCK TABLES;
  -- -------------------------------------------------------------------------------------------------------------------------------------
 DROP TABLE IF EXISTS `retails`;
@@ -210,9 +191,17 @@ DROP TABLE IF EXISTS `retails`;
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 LOCK TABLES `retails` WRITE;
-/*!40000 ALTER TABLE `retails` DISABLE KEYS */;
 INSERT INTO `retails` VALUES (1,2,2),(2,3,1),(4,6,1),(3,8,2);
-/*!40000 ALTER TABLE `retails` ENABLE KEYS */;
 UNLOCK TABLES;
 -- -----------------------------------------------------------------------------------------------------------
 
+SELECT retails.Artisan_ID, artisan.First_Name, Artisan.Last_Name, count(product.Category_ID) AS
+No_Of_Categories_Sold, SUM(retails.No_of_Product_Sold) as
+Total_Products_Sold, SUM(Product.price * retails.No_of_Product_Sold) AS Total_Sales_Done,
+AVG(Product.price * retails.No_of_Product_Sold) AS Average_Sale_Per_Order
+FROM retails
+JOIN artisan
+JOIN product
+WHERE retails.Artisan_ID=artisan.Artisan_ID AND product.Product_ID=retails.Product_ID
+GROUP BY Artisan_ID
+ORDER BY Artisan_ID;

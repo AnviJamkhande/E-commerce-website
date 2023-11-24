@@ -85,21 +85,27 @@ def adminAdd_Seller(admin_id):
         cur.close()
     return render_template('addSeller.html',admin_id=admin_id)
 
-@app.route('/adminProduct/<admin_id>',methods=['GET', 'POST'])
+@app.route('/adminProduct/<admin_id>', methods=['GET', 'POST'])
 def adminAdd_Product(admin_id):
-    if request.method=='POST':
+    if request.method == 'POST':
         Product_Details = request.form
-        Name = Product_Details['Name']
-        Price = Product_Details['Price']
-        Artisan_name= Product_Details['Artisan_name']
-        Description = Product_Details['Description']
-        Category_ID = Product_Details['Category_ID']
-        cur = my_sql.connection.cursor()
-        cur.execute("INSERT INTO product(Name,Price,Artisan_name,Admin_ID,Category_ID,Description) VALUES(%s, %s, %s, %s, %s,%s)",(Name,Price,Artisan_name,admin_id,Category_ID,Description))
-        flash('You have successfully added a Product !')
-        my_sql.connection.commit()
-        cur.close()
-    return render_template('addNewProducts.html',admin_id=admin_id)
+        if all(key in Product_Details for key in ('Name', 'Price', 'Category_ID', 'Description', 'Artisan_name')):
+            Name = Product_Details['Name']
+            print(Name)
+            Price = Product_Details['Price']
+            Category_ID = Product_Details['Category_ID']
+            Description = Product_Details['Description']
+            # Artisan_name = Product_Details['Artisan_name']
+            Artisan_name = 'Anvi'
+            cur = my_sql.connection.cursor()
+            cur.execute("INSERT INTO product(Name, Price, Admin_ID, Category_ID, Description, Artisan_name) VALUES(%s, %s, %s, %s, %s, %s)",
+                        (Name, Price, admin_id, Category_ID, Description, Artisan_name))
+            flash('You have successfully added a Product!')
+            my_sql.connection.commit()
+            cur.close()
+        else:
+            flash('Missing required fields in the form!')
+    return render_template('addNewProducts.html', admin_id=admin_id)
 
 @app.route('/sell/<seller_id>',methods=['GET', 'POST'])
 def sell(seller_id):
@@ -114,7 +120,7 @@ def sell(seller_id):
             prod_all = cur.fetchall()
             c_tup = ()
             for tup in prod_all:
-                if(tup[1]==Name and tup[3]==Brand):
+                if(tup[1]==Name and tup[6]==Brand):
                     c_tup = tup
                     break
             if c_tup==() or int(Quantity)<0:
